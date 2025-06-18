@@ -7,9 +7,9 @@ import { useAppContext } from '@/utils/ThemeContext';
 // Define variants for animations
 const containerVariants: Variants = {
   hidden: { opacity: 0, y: 5, scale: 0.9 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     scale: 1,
     transition: { duration: 0.5, ease: 'easeInOut', delay: 0.6 }
   }
@@ -17,9 +17,9 @@ const containerVariants: Variants = {
 
 const titleVariants: Variants = {
   hidden: { opacity: 0, y: 5, rotate: -10 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     rotate: 0,
     transition: { duration: 0.5, ease: 'easeInOut', delay: 0.6 }
   }
@@ -27,8 +27,8 @@ const titleVariants: Variants = {
 
 const textVariants: Variants = {
   hidden: { opacity: 0, y: 5 },
-  visible: (custom: number) => ({ 
-    opacity: 1, 
+  visible: (custom: number) => ({
+    opacity: 1,
     y: 0,
     transition: { duration: 0.4, ease: 'easeInOut', delay: 0.8 + (custom * 0.2) }
   })
@@ -36,10 +36,9 @@ const textVariants: Variants = {
 
 // Keywords for floating background
 const keywords = [
-  'AWS', 'Azure', 'Docker', 'Kubernetes', 'CI/CD', 'DevOps', 'Cloud', 
-  'Terraform', 'Ansible', 'Jenkins', 'Git', 'Linux', 'Microservices', 
-  'Serverless', 'Monitoring', 'Automation', 'Scalability', 'Containers',
-  'Infrastructure', 'Deployment', 'Security', 'REST', 'Python', 'JavaScript'
+  'Azure', 'Docker', 'Git', 'Linux', 'Microservices',
+  'Serverless', 'Automation', 'Scalability', 'Containers',
+  'Infrastructure', 'Deployment', 'REST', 'JavaScript', 'Angular', 'React',
 ];
 
 // Floating Keyword component
@@ -49,17 +48,17 @@ const FloatingKeyword: FC<{ text: string, index: number, scrollY: number }> = ({
   const randomY = Math.random() * 100;
   const randomSize = 12 + Math.random() * 6; // Between 12-18px
   const randomOpacity = 0.02 + Math.random() * 0.03; // Very subtle
-  
+
   // Create very gentle scroll-based movement
   // Each keyword moves at a different rate based on its index
   const scrollFactor = 0.005 + (index % 5) * 0.002; // Between 0.005 and 0.013
   const scrollOffset = scrollY * scrollFactor;
-  
+
   // Alternate direction based on index
   const direction = index % 2 === 0 ? 1 : -1;
-  
+
   return (
-    <div 
+    <div
       className="floating-keyword"
       style={{
         position: 'absolute',
@@ -92,16 +91,16 @@ const Hero: FC = () => {
       // Use requestAnimationFrame for smoother scrolling effects
       requestAnimationFrame(() => {
         setScrollY(window.scrollY);
-        
+
         // Check if section is in viewport
         const section = document.querySelector('.hero-container');
         if (section) {
           const sectionTop = section.getBoundingClientRect().top;
           const sectionBottom = section.getBoundingClientRect().bottom;
-          const isInView = (sectionTop >= 0 && sectionTop <= window.innerHeight) || 
-                         (sectionBottom >= 0 && sectionBottom <= window.innerHeight) ||
-                         (sectionTop <= 0 && sectionBottom >= window.innerHeight);
-          
+          const isInView = (sectionTop >= 0 && sectionTop <= window.innerHeight) ||
+            (sectionBottom >= 0 && sectionBottom <= window.innerHeight) ||
+            (sectionTop <= 0 && sectionBottom >= window.innerHeight);
+
           if (isInView && !isVisible) {
             setIsVisible(true);
             controls.start({ opacity: 1, y: 0 });
@@ -109,7 +108,7 @@ const Hero: FC = () => {
         }
       });
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     // Initial check
     handleScroll();
@@ -129,13 +128,13 @@ const Hero: FC = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{ 
-          backgroundPositionY: `${scrollY * 0.05}px` // 10x slower than before
+        style={{
+          backgroundPositionY: `${scrollY * 0.05}px`
         }}
       >
         <div className="hero-background-wrapper">
-          <div className="hero-background" style={{ 
-            backgroundPositionY: `${scrollY * 0.03}px` // 10x slower than before
+          <div className="hero-background" style={{
+            backgroundPositionY: `${scrollY * 0.03}px`
           }}></div>
         </div>
         <motion.h1
@@ -154,7 +153,7 @@ const Hero: FC = () => {
           initial="hidden"
           animate="visible"
         >
-          Lohit Kolluri.
+          Andres Bonilla.
         </motion.h2>
         <motion.h3
           className="hero-title-large hero-title-sub"
@@ -162,7 +161,7 @@ const Hero: FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut', delay: 1.0 }}
         >
-          I build <span className="highlight">scalable systems</span>
+          I build <span className="highlight">things for the web</span>
         </motion.h3>
         <motion.p
           className="hero-text"
@@ -170,9 +169,9 @@ const Hero: FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut', delay: 1.4 }}
         >
-          I&apos;m a <span className="highlight">DevOps & Cloud Solutions Engineer</span> specializing in <span className="highlight">cloud-native</span> technologies, 
-          containerization, and <span className="highlight">CI/CD pipelines</span>. My expertise includes <span className="highlight">AWS</span>, <span className="highlight">Azure</span>, <span className="highlight">Docker</span>, <span className="highlight">Kubernetes</span>, 
-          and full-stack development.
+          I&apos;m a <span className="highlight">Full-Stack Developer</span> specializing in <span className="highlight">responsive web applications</span> RESTful APIs,
+          My expertise includes <span className="highlight">React</span>, <span className="highlight">Node.js</span>, <span className="highlight">C#</span>, <span className="highlight">modern JavaScript</span>,
+          and performance optimization.
         </motion.p>
         <motion.div
           className="hero-button"
@@ -182,8 +181,8 @@ const Hero: FC = () => {
         >
           <Button
             text="Connect on LinkedIn"
-            link="https://linkedin.com/in/kollurilohit"
-            aria-label="LinkedIn profile of Lohit Kolluri"
+            link="https://linkedin.com/in/andresbonilla97"
+            aria-label="LinkedIn profile of Andres Bonilla"
             variant="primary"
             size="lg"
             showExternalIcon={true}

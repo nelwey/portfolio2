@@ -1,11 +1,10 @@
-import { Github, Instagram, Linkedin, Globe } from 'lucide-react';
+import { Github, Instagram, Linkedin, Send } from 'lucide-react';
 
 function SocialIcons() {
   const socialLinks = [
-    { name: 'Github', icon: <Github />, link: 'https://www.github.com/lohitkolluri' },
-    { name: 'LinkedIn', icon: <Linkedin />, link: 'https://www.linkedin.com/in/kollurilohit/' },
-    { name: 'Instagram', icon: <Instagram />, link: 'https://instagram.com/kollurilohit' },
-    { name: 'Website', icon: <Globe />, link: 'https://lohit.is-a.dev' },
+    { name: 'Github', icon: <Github />, link: 'https://www.github.com/nelwey' },
+    { name: 'LinkedIn', icon: <Linkedin />, link: 'https://www.linkedin.com/in/andresbonilla97/' },
+    { name: 'Instagram', icon: <Instagram />, link: 'https://instagram.com/nelwey97' },
   ];
 
   return (

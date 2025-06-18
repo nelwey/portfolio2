@@ -15,28 +15,29 @@ function Footer() {
   }, []);
 
   return (
-    <footer>
-      <a
-        href="https://github.com/lohitkolluri/Portfolio"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="footer-link"
-      >
-        <span className="footer-info">View on GitHub</span>
-      </a>
-      {githubInfo.stars !== null && (
-        <span className="footer-icon">
-          {/* Display stars */}
-          {githubInfo.stars}
-        </span>
-      )}
-      {githubInfo.forks !== null && (
-        <span className="footer-icon">
-          {/* Display forks */}
-          {githubInfo.forks}
-        </span>
-      )}
-    </footer>
+    <></>
+    // <footer>
+    //   <a
+    //     href="https://github.com/lohitkolluri/Portfolio"
+    //     target="_blank"
+    //     rel="noopener noreferrer"
+    //     className="footer-link"
+    //   >
+    //     <span className="footer-info">View on GitHub</span>
+    //   </a>
+    //   {githubInfo.stars !== null && (
+    //     <span className="footer-icon">
+    //       {/* Display stars */}
+    //       {githubInfo.stars}
+    //     </span>
+    //   )}
+    //   {githubInfo.forks !== null && (
+    //     <span className="footer-icon">
+    //       {/* Display forks */}
+    //       {githubInfo.forks}
+    //     </span>
+    //   )}
+    // </footer>
   );
 }
 

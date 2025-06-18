@@ -33,9 +33,9 @@ const Projects = dynamic(() => import('../sections/Projects'), {
   loading: () => <div className="section-loader">Loading...</div>,
 });
 
-const OtherProjects = dynamic(() => import('@/sections/OtherProjects'), {
-  loading: () => <div className="section-loader">Loading...</div>,
-});
+// const OtherProjects = dynamic(() => import('@/sections/OtherProjects'), {
+//   loading: () => <div className="section-loader">Loading...</div>,
+// });
 
 const Contact = dynamic(() => import('../sections/Contact'), {
   loading: () => <div className="section-loader">Loading...</div>,
@@ -216,7 +216,7 @@ function Index() {
             </Suspense>
             <Suspense fallback={<div className="section-loader">Loading projects section...</div>}>
               <Projects />
-              <OtherProjects />
+              {/* <OtherProjects /> */}
             </Suspense>
             <Suspense fallback={<div className="section-loader">Loading contact section...</div>}>
               <Contact />
