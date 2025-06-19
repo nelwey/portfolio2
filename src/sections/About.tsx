@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { motion, useInView, useAnimation } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useRef, useState, useCallback } from 'react';
@@ -10,14 +11,14 @@ interface AboutText {
 
 const mobileText: AboutText = {
   intro:
-    'Hi there! I’m Andres, a Full-Stack Developer with 3+ years of experience building dynamic web applications, from sleek front-end interfaces to robust back-end systems. Currently based in Saint Petersburg, Russia, I’m also pursuing a Master’s degree in Fundamentals of Analysis and Development of Applications with Large Volumes of Distributed Data, deepening my expertise in scalable architectures.Hi there! I’m Andres, a Full-Stack Developer with 3+ years of experience building dynamic web applications, from sleek front-end interfaces to robust back-end systems. Currently based in Saint Petersburg, Russia, I’m also pursuing a Master’s degree in Fundamentals of Analysis and Development of Applications with Large Volumes of Distributed Data, deepening my expertise in scalable architectures.',
+    'Hi there! I’m Andres, a Full-Stack Developer with over 3 years of experience building web applications from concept to deployment. I specialize in creating responsive, user-friendly interfaces with React, Vue.js, and modern JavaScript, while also developing efficient back-end systems using Node.js, Express, and C#. Currently based in Saint Petersburg, Russia, I’m pursuing a Master’s degree in Large-Scale Distributed Data Systems, where I’m deepening my expertise in scalable architectures, data processing, and cloud-native solutions.',
   experience:
     'I thrive on turning ideas into efficient, user-friendly solutions—whether optimizing front-end performance, designing scalable APIs, or ensuring seamless functionality through rigorous testing.',
 };
 
 const desktopText: AboutText = {
   intro:
-    'Hi there! I’m Andres, a Full-Stack Developer with over 3 years of experience building web applications from concept to deployment. I specialize in creating responsive, user-friendly interfaces with React, Vue.js, and modern JavaScript, while also developing efficient back-end systems using Node.js, Express, and C#. My experience extends to database design, API development, and cloud integration, ensuring end-to-end functionality. In my previous role as a QA Engineer, I sharpened my problem-solving skills through comprehensive testing, automated test scripting, and performance optimization. Currently based in Saint Petersburg, Russia, I’m pursuing a Master’s degree in Large-Scale Distributed Data Systems, where I’m deepening my expertise in scalable architectures, data processing, and cloud-native solutions.',
+    'Hi there! I’m Andres, a Full-Stack Developer with over 3 years of experience building web applications from concept to deployment. I specialize in creating responsive, user-friendly interfaces with React, Vue.js, and modern JavaScript, while also developing efficient back-end systems using Node.js, Express, and C#. Currently based in Saint Petersburg, Russia, I’m pursuing a Master’s degree in Large-Scale Distributed Data Systems, where I’m deepening my expertise in scalable architectures, data processing, and cloud-native solutions.',
   experience:
     'I’m passionate about writing clean, maintainable code and thrive in collaborative environments where I can contribute to both technical solutions and product strategy. Whether it’s troubleshooting complex issues or implementing new features, I approach every challenge with a detail-oriented mindset and a commitment to delivering high-quality results.',
 };
@@ -37,11 +38,11 @@ const technologiesLine1: Skill[] = [
   { name: 'Azure', icon: 'https://cdn.simpleicons.org/icloud/white' },
   { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/white' },
   { name: 'Vue', icon: 'https://cdn.simpleicons.org/vue.js/white' },
-
+ 
 ];
 
 const technologiesLine2: Skill[] = [
-
+ 
   { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/white' },
   { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb/white' },
   { name: 'React.js', icon: 'https://cdn.simpleicons.org/react/white' },
@@ -95,7 +96,7 @@ function About() {
     };
 
     window.addEventListener('scroll', handleScroll);
-
+    
     // Initial checks
     handleScroll();
 
@@ -134,18 +135,18 @@ function About() {
           <p className="about-grid-info-text text-justify text-base md:text-lg leading-relaxed indent-4">
             {isMobile ? mobileText.experience : desktopText.experience}
           </p>
-
+          
           <div className="tech-section" ref={techSectionRef}>
             <div className="tech-carousel">
               <div className="tech-container right-to-left">
                 {skillsRow1.map((skill, index) => (
                   <motion.div
-                    key={`line1-${skill.name}-${index}`}
+                    key={`line1-${skill.name}-${index}`} 
                     className="tech-badge"
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.2 }}
                     initial={{ opacity: 0 }}
-                    animate={{
+                    animate={{ 
                       opacity: 1,
                       transition: {
                         duration: 0.5,
@@ -154,27 +155,22 @@ function About() {
                     }}
                   >
                     <div className="tech-icon">
-                      <Image
-                        src={skill.icon}
-                        alt={`${skill.name} icon`}
-                        width={24}  // specify appropriate dimensions
-                        height={24}
-                      />
+                      <img src={skill.icon} alt={`${skill.name} icon`} />
                     </div>
                     {skill.name}
                   </motion.div>
                 ))}
               </div>
-
+              
               <div className="tech-container left-to-right">
                 {skillsRow2.map((skill, index) => (
                   <motion.div
-                    key={`line2-${skill.name}-${index}`}
+                    key={`line2-${skill.name}-${index}`} 
                     className="tech-badge"
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.2 }}
                     initial={{ opacity: 0 }}
-                    animate={{
+                    animate={{ 
                       opacity: 1,
                       transition: {
                         duration: 0.5,
@@ -183,12 +179,7 @@ function About() {
                     }}
                   >
                     <div className="tech-icon">
-                      <Image
-                        src={skill.icon}
-                        alt={`${skill.name} icon`}
-                        width={24}  // specify appropriate dimensions
-                        height={24}
-                      />
+                      <img src={skill.icon} alt={`${skill.name} icon`} />
                     </div>
                     {skill.name}
                   </motion.div>
@@ -197,14 +188,14 @@ function About() {
             </div>
           </div>
         </div>
-
+        
         <div className="about-grid-photo">
           <div className="overlay"></div>
           <div className="overlay-border"></div>
           <div className="about-grid-photo-container">
             {!imageError ? (
               <Image
-                src="/etc/pp.jpg"
+                src="/etc/pp.jpg" 
                 alt="Lohit Kolluri - DevOps & Cloud Solutions Engineer"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -216,7 +207,7 @@ function About() {
               />
             ) : (
               <Image
-                src="/etc/image.png"
+                src="/etc/image.png" 
                 alt="Lohit Kolluri - DevOps & Cloud Solutions Engineer"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
