@@ -30,7 +30,7 @@ function Experience() {
   const experiences = [
     {
       name: 'Q\'allta Software',
-      role: 'Front End Developer',
+      role: 'Full Stack Developer',
       url: 'https://www.linkedin.com/company/qallta/',
       start: 'July 2021',
       end: 'February 2025',
