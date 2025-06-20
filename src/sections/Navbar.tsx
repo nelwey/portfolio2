@@ -148,7 +148,7 @@ function Navbar() {
           >
             <Button
               text="Resume"
-              link="https://drive.google.com/file/d/12Wvwc24DJu8Oj2ka84yXI6-j7PH6K88L/view?usp=sharing"
+              link="https://drive.google.com/file/d/16z3b60XrAoP4aVRehl_W7W436gmej_P1/view?usp=sharing"
               variant="outline"
               size="sm"
               showExternalIcon={true}
