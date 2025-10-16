@@ -20,54 +20,36 @@ function Projects() {
     target: containerRef,
     offset: ["start end", "end start"]
   });
-  
+
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   const projectsData = [
     {
-      video: 'https://www.youtube.com/embed/LurWJ21sPGQ',
-      projectName: 'KubeWise',
-      projectLink: 'https://github.com/lohitkolluri/KubeWise',
+      video: '',
+      projectName: 'TesloShop',
+      projectLink: 'https://react-teslo-shop.netlify.app/',
       projectDescription:
-        'AI-powered guardian for Kubernetes that autonomously detects anomalies, diagnoses issues, and remediates problems. Built with Python, Google Gemini AI, and Prometheus for intelligent cluster management.',
-      projectTech: ['Kubernetes', 'Google Gemini AI', 'Prometheus', 'FastAPI'],
-      projectExternalLinks: {
-        github: 'https://github.com/lohitkolluri/KubeWise',
-        externalLink: 'https://github.com/lohitkolluri/KubeWise',
-      },
+        'Full-stack e-commerce application built with React + TypeScript, developed as part of my React course by Fernando Herrera. TesloShop includes a public shopping interface and an admin dashboard for managing products, authentication, and roles. It uses TanStack Query for data fetching, Zustand for state management, and a NestJS backend with PostgreSQL (Neon) for persistent storage.',
+      projectTech: [
+        'React',
+        'TypeScript',
+        'Vite',
+        'TanStack Query',
+        'Zustand',
+        'Tailwind CSS',
+        'shadcn/ui',
+        'NestJS',
+        'PostgreSQL (Neon)',
+      ],
       featured: true,
-      timeframe: '2023',
-      accolades: 'Achieved Runner-Up at DevSummit 2025 (DevTrails University Hackathon) among 730+ teams and 3000 participants',
-    },
-    {
-      video: 'https://www.youtube.com/embed/_zZ1Ndt5diU',
-      projectName: 'QueryLens',
-      projectLink: 'https://trynlp2sql.streamlit.app/',
-      projectDescription:
-        'QueryLens converts natural language to SQL queries, streamlining database interactions through intuitive processing.',
-      projectTech: ['Streamlit', 'Azure OpenAI', 'SQLite3', 'Altair'],
+      image: '/projects/teslo.webp',
+      timeframe: '2025',
+      accolades: '',
       projectExternalLinks: {
-        github: 'https://github.com/lohitkolluri/NLP2SQL',
-        externalLink: 'https://trynlp2sql.streamlit.app/',
+        github: 'https://github.com/nelwey/react-teslo-shop',
+        externalLink: 'https://github.com/nelwey/react-teslo-shop',
       },
-      featured: true,
-      timeframe: '2024',
-      accolades: '2nd Runner Up at SEED Global Education Hackathon among 700+ teams',
-    },
-    {
-      image: '/projects/project2.webp',
-      projectName: 'FlaskPost',
-      projectLink: 'https://flask-post.vercel.app/',
-      projectDescription:
-        'A FastAPI-powered mass email platform featuring SMTP configuration, CSV recipient management, and HTML template customization with live preview functionality.',
-      projectTech: ['FastAPI', 'REST API', 'Jinja2', 'Fast Mail'],
-      projectExternalLinks: {
-        github: 'https://github.com/lohitkolluri/FlaskPost',
-        externalLink: 'https://github.com/lohitkolluri/FlaskPost',
-      },
-      featured: false,
-      timeframe: '2024',
-    },
+    }
   ];
 
   // // Generate a random recent date for "last commit" or "last activity"
@@ -76,7 +58,7 @@ function Projects() {
   //   const lastWeek = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
   //   const randomTime = lastWeek.getTime() + Math.random() * (today.getTime() - lastWeek.getTime());
   //   const randomDate = new Date(randomTime);
-    
+
   //   return randomDate.toLocaleDateString('en-US', { 
   //     month: 'short', 
   //     day: 'numeric',
@@ -98,7 +80,7 @@ function Projects() {
   //     `The repository for ${projectName} is well-maintained, as indicated by code quality metrics.`,
   //     `Containerizing ${projectName} would simplify its deployment process.`
   //   ];
-    
+
   //   return insights[Math.floor(Math.random() * insights.length)];
   // };
 
@@ -107,19 +89,19 @@ function Projects() {
   //   try {
   //     setIsLoading(true);
   //     setError(null);
-      
+
   //     const apiUrl = repoName 
   //       ? `/api/projectOfTheDay?repo=${encodeURIComponent(repoName)}`
   //       : '/api/projectOfTheDay';
-        
+
   //     const response = await fetch(apiUrl);
-      
+
   //     if (!response.ok) {
   //       throw new Error('Failed to fetch project of the day');
   //     }
-      
+
   //     const data = await response.json();
-      
+
   //     // Format the project data
   //     const formattedProject = {
   //       projectName: data.name,
@@ -140,7 +122,7 @@ function Projects() {
   //       stars: data.stars,
   //       forks: data.forks,
   //     };
-      
+
   //     setProjectOfTheDay(formattedProject);
   //     setIframeLoaded(false);
   //     setIframeError(false);
@@ -153,7 +135,7 @@ function Projects() {
   //     setIsLoading(false);
   //   }
   // };
-  
+
   // Fetch Project of the Day data on initial load
   // useEffect(() => {
   //   changeProjectOfTheDay();
@@ -187,8 +169,8 @@ function Projects() {
   const hasValidExternalLink = (project: any): boolean => {
     if (!project) return false;
     const link = project.projectLink || project.projectExternalLinks?.externalLink;
-    return Boolean(link) && 
-      link.startsWith('http') && 
+    return Boolean(link) &&
+      link.startsWith('http') &&
       !link.includes('github.com') &&
       !link.includes('localhost');
   };
@@ -226,9 +208,9 @@ function Projects() {
         <h2>Some Things I&apos;ve Built</h2>
       </motion.div>
 
-     
 
-      <motion.div 
+
+      <motion.div
         className="projects-container"
         variants={containerVariants}
         initial="hidden"
@@ -251,12 +233,11 @@ function Projects() {
           }, index) => {
             const hasVideo = video && (projectName === 'QueryLens' || projectName === 'KubeWise');
             const isEven = index % 2 === 1;
-            
+
             return (
               <motion.div
-                className={`project bg-gradient-to-tr from-purple-600/20 via-indigo-500/10 to-pink-500/20 p-[1px] rounded-xl transition-transform transform hover:scale-[1.02] duration-300 hover:shadow-2xl hover:shadow-indigo-500/30 ${
-                  hoveredProject === projectName ? 'is-hovered' : ''
-                } ${isEven ? 'even-project' : 'odd-project'}`}
+                className={`project bg-gradient-to-tr from-purple-600/20 via-indigo-500/10 to-pink-500/20 p-[1px] rounded-xl transition-transform transform hover:scale-[1.02] duration-300 hover:shadow-2xl hover:shadow-indigo-500/30 ${hoveredProject === projectName ? 'is-hovered' : ''
+                  } ${isEven ? 'even-project' : 'odd-project'}`}
                 key={projectName}
                 variants={itemVariants}
                 onMouseEnter={() => setHoveredProject(projectName)}
@@ -267,7 +248,7 @@ function Projects() {
                 }}
               >
                 <div className="project-inner bg-[#0f0f0f] rounded-[inherit]">
-                  <div 
+                  <div
                     className={`project-image ${hasVideo ? 'has-video' : ''}`}
                     onClick={hasVideo ? undefined : () => window.open(projectLink, '_blank')}
                   >
@@ -286,7 +267,7 @@ function Projects() {
                       )}
                     </div>
                     {featured && (
-                      <motion.div 
+                      <motion.div
                         className="featured-badge"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -316,9 +297,9 @@ function Projects() {
                         {projectName}
                       </motion.span>
                     </h3>
-                    <motion.div 
+                    <motion.div
                       className="project-info-description"
-                      whileHover={{ 
+                      whileHover={{
                         boxShadow: "0 15px 30px -15px rgba(2,12,27,0.8)",
                         y: -5
                       }}

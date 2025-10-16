@@ -11,14 +11,13 @@ interface AboutText {
 
 const mobileText: AboutText = {
   intro:
-    'Hi there! I’m Andres, a Full-Stack Developer with over 3 years of experience building web applications from concept to deployment. I specialize in creating responsive, user-friendly interfaces with React, Vue.js, and modern JavaScript, while also developing efficient back-end systems using Node.js, Express, and C#. Currently based in Saint Petersburg, Russia, I’m pursuing a Master’s degree in Large-Scale Distributed Data Systems, where I’m deepening my expertise in scalable architectures, data processing, and cloud-native solutions.',
+    'Hi, I’m Andres. I’ve been working as a web developer for over three years, building both front-end and back-end applications. I work a lot with HTML, CSS, and JavaScript, and I’m comfortable using frameworks like React and Vue.js to bring ideas to life. On the server side, I work with Node.js and C#, which lets me build dynamic, responsive apps that actually solve what clients need.',
   experience:
     'I thrive on turning ideas into efficient, user-friendly solutions—whether optimizing front-end performance, designing scalable APIs, or ensuring seamless functionality through rigorous testing.',
 };
 
 const desktopText: AboutText = {
-  intro:
-    'Hi there! I’m Andres, a Full-Stack Developer with over 3 years of experience building web applications from concept to deployment. I specialize in creating responsive, user-friendly interfaces with React, Vue.js, and modern JavaScript, while also developing efficient back-end systems using Node.js, Express, and C#. Currently based in Saint Petersburg, Russia, I’m pursuing a Master’s degree in Large-Scale Distributed Data Systems, where I’m deepening my expertise in scalable architectures, data processing, and cloud-native solutions.',
+  intro: 'Hi, I’m Andres. I’ve been working as a web developer for over three years, building both front-end and back-end applications. I work a lot with HTML, CSS, and JavaScript, and I’m comfortable using frameworks like React and Vue.js to bring ideas to life. On the server side, I work with Node.js and C#, which lets me build dynamic, responsive apps that actually solve what clients need.',
   experience:
     'I’m passionate about writing clean, maintainable code and thrive in collaborative environments where I can contribute to both technical solutions and product strategy. Whether it’s troubleshooting complex issues or implementing new features, I approach every challenge with a detail-oriented mindset and a commitment to delivering high-quality results.',
 };
@@ -38,11 +37,11 @@ const technologiesLine1: Skill[] = [
   { name: 'Azure', icon: 'https://cdn.simpleicons.org/icloud/white' },
   { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/white' },
   { name: 'Vue', icon: 'https://cdn.simpleicons.org/vue.js/white' },
- 
+
 ];
 
 const technologiesLine2: Skill[] = [
- 
+
   { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/white' },
   { name: 'MongoDB', icon: 'https://cdn.simpleicons.org/mongodb/white' },
   { name: 'React.js', icon: 'https://cdn.simpleicons.org/react/white' },
@@ -96,7 +95,7 @@ function About() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+
     // Initial checks
     handleScroll();
 
@@ -135,18 +134,18 @@ function About() {
           <p className="about-grid-info-text text-justify text-base md:text-lg leading-relaxed indent-4">
             {isMobile ? mobileText.experience : desktopText.experience}
           </p>
-          
+
           <div className="tech-section" ref={techSectionRef}>
             <div className="tech-carousel">
               <div className="tech-container right-to-left">
                 {skillsRow1.map((skill, index) => (
                   <motion.div
-                    key={`line1-${skill.name}-${index}`} 
+                    key={`line1-${skill.name}-${index}`}
                     className="tech-badge"
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.2 }}
                     initial={{ opacity: 0 }}
-                    animate={{ 
+                    animate={{
                       opacity: 1,
                       transition: {
                         duration: 0.5,
@@ -161,16 +160,16 @@ function About() {
                   </motion.div>
                 ))}
               </div>
-              
+
               <div className="tech-container left-to-right">
                 {skillsRow2.map((skill, index) => (
                   <motion.div
-                    key={`line2-${skill.name}-${index}`} 
+                    key={`line2-${skill.name}-${index}`}
                     className="tech-badge"
                     whileHover={{ y: -5 }}
                     transition={{ duration: 0.2 }}
                     initial={{ opacity: 0 }}
-                    animate={{ 
+                    animate={{
                       opacity: 1,
                       transition: {
                         duration: 0.5,
@@ -188,34 +187,27 @@ function About() {
             </div>
           </div>
         </div>
-        
+
         <div className="about-grid-photo">
-          <div className="overlay"></div>
-          <div className="overlay-border"></div>
+          {/* <div className="overlay"></div> */}
+          {/* <div className="overlay-border"></div> */}
           <div className="about-grid-photo-container">
             {!imageError ? (
               <Image
-                src="/etc/pp.jpg" 
-                alt="Lohit Kolluri - DevOps & Cloud Solutions Engineer"
+                src="/etc/pp.png"
+                alt="Andres Bonilla - Front End Developer"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
                 style={{ objectFit: 'cover' }}
                 className="rounded-lg"
-                aria-label="Profile picture of Lohit Kolluri"
                 onError={() => setImageError(true)}
               />
             ) : (
-              <Image
-                src="/etc/image.png" 
-                alt="Lohit Kolluri - DevOps & Cloud Solutions Engineer"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-                style={{ objectFit: 'cover' }}
-                className="rounded-lg"
-                aria-label="Profile picture of Lohit Kolluri"
-              />
+              <div className="img-fallback">
+                <div className="img-fallback-avatar">A</div>
+                <p>Image unavailable</p>
+              </div>
             )}
           </div>
         </div>
