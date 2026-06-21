@@ -1,9 +1,11 @@
+import { useLanguage } from '@/utils/LanguageContext';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import Button from '../components/Button';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -66,7 +68,7 @@ const Contact = () => {
       setStatus({ submitting: false, submitted: true, error: null });
       setFormData({ name: '', email: '', message: '' });
     } catch (error: any) {
-      const errorMessage = error.text || 'Failed to send message. Please try again.';
+      const errorMessage = error.text || t.contact.error;
       setStatus({
         submitting: false,
         submitted: false,
@@ -85,14 +87,13 @@ const Contact = () => {
       transition={{ duration: 0.8 }}
     >
       <motion.h2 className="contact-title" variants={itemVariants} custom={0}>
-        What&apos;s Next?
+        {t.contact.title}
       </motion.h2>
       <motion.h2 className="contact-sub-title" variants={itemVariants} custom={1}>
-        Get In Touch
+        {t.contact.subtitle}
       </motion.h2>
       <motion.p className="contact-text" variants={itemVariants} custom={2}>
-        I&apos;m always looking for new opportunities, and my inbox is always open. Whether you have
-        a question or just want to say hi, I&apos;ll try my best to get back to you!
+        {t.contact.text}
       </motion.p>
 
       <motion.form
@@ -108,7 +109,7 @@ const Contact = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Your Name"
+            placeholder={t.contact.namePlaceholder}
             required
             className="form-input"
             whileFocus={{ scale: 1.05 }}
@@ -121,7 +122,7 @@ const Contact = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Your Email"
+            placeholder={t.contact.emailPlaceholder}
             required
             className="form-input"
             whileFocus={{ scale: 1.05 }}
@@ -133,7 +134,7 @@ const Contact = () => {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Your Message"
+            placeholder={t.contact.messagePlaceholder}
             required
             className="form-textarea"
             whileFocus={{ scale: 1.05 }}
@@ -142,7 +143,7 @@ const Contact = () => {
 
         <motion.div className="contact-cta" variants={itemVariants} custom={4}>
           <Button
-            text={status.submitting ? 'Sending...' : 'Send Message'}
+            text={status.submitting ? t.contact.sending : t.contact.sendMessage}
             link="#"
             variant="primary"
             size="lg"
@@ -153,7 +154,7 @@ const Contact = () => {
 
         {status.submitted && (
           <motion.div className="success-message" initial={{ scale: 0 }} animate={{ scale: 1 }}>
-            Message sent successfully!
+            {t.contact.success}
           </motion.div>
         )}
 

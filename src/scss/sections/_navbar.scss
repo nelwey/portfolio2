@@ -89,6 +89,50 @@ nav {
           margin-top: 30px;
         }
       }
+
+      &-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        @media screen and (max-width: 1020px) {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+      }
+    }
+
+    .language-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--fira-code);
+      font-size: var(--tsm1);
+      font-weight: 500;
+
+      &-btn {
+        background: none;
+        border: none;
+        color: var(--slate);
+        cursor: pointer;
+        padding: 0.25rem 0.35rem;
+        transition: color 0.3s ease-in-out;
+        font: inherit;
+
+        &:hover {
+          color: var(--theme-color);
+        }
+
+        &--active {
+          color: var(--theme-color);
+        }
+      }
+
+      &-divider {
+        color: var(--slate);
+        opacity: 0.5;
+        user-select: none;
+      }
     }
 
     @media screen and (max-width: 1020px) {

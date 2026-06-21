@@ -1,3 +1,4 @@
+import { useLanguage } from '@/utils/LanguageContext';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { Suspense, useEffect, useState } from 'react';
@@ -46,6 +47,7 @@ const Footer = dynamic(() => import('../sections/Footer'), {
 });
 
 function Index() {
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -130,8 +132,8 @@ function Index() {
   return (
     <div className="app">
       <Head>
-        <title>Andres&apos;s Portfolio</title>
-        <meta name="description" content="Andres" />
+        <title>{t.meta.title}</title>
+        <meta name="description" content={t.meta.description} />
         <link rel="canonical" href="" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>

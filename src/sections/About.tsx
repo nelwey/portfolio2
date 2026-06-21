@@ -1,26 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { motion, useInView, useAnimation } from 'framer-motion';
-import Image from 'next/image';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useLanguage } from '@/utils/LanguageContext';
 import { isInViewport } from '@/utils/scrollAnimation';
-
-interface AboutText {
-  intro: string;
-  experience: string;
-}
-
-const mobileText: AboutText = {
-  intro:
-    'Hi, I’m Andres. I’ve been working as a web developer for over three years, building both front-end and back-end applications. I work a lot with HTML, CSS, and JavaScript, and I’m comfortable using frameworks like React and Vue.js to bring ideas to life. On the server side, I work with Node.js and C#, which lets me build dynamic, responsive apps that actually solve what clients need.',
-  experience:
-    'I thrive on turning ideas into efficient, user-friendly solutions—whether optimizing front-end performance, designing scalable APIs, or ensuring seamless functionality through rigorous testing.',
-};
-
-const desktopText: AboutText = {
-  intro: 'Hi, I’m Andres. I’ve been working as a web developer for over three years, building both front-end and back-end applications. I work a lot with HTML, CSS, and JavaScript, and I’m comfortable using frameworks like React and Vue.js to bring ideas to life. On the server side, I work with Node.js and C#, which lets me build dynamic, responsive apps that actually solve what clients need.',
-  experience:
-    'I’m passionate about writing clean, maintainable code and thrive in collaborative environments where I can contribute to both technical solutions and product strategy. Whether it’s troubleshooting complex issues or implementing new features, I approach every challenge with a detail-oriented mindset and a commitment to delivering high-quality results.',
-};
+import { motion, useAnimation, useInView } from 'framer-motion';
+import Image from 'next/image';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Skill definitions with icons from Simple Icons CDN
 interface Skill {
@@ -58,6 +41,7 @@ const variants = {
 };
 
 function About() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const techSectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
@@ -124,15 +108,15 @@ function About() {
       transition={{ duration: 0.6, ease: 'easeInOut' }}
     >
       <div className="title">
-        <h2>About Me</h2>
+        <h2>{t.about.title}</h2>
       </div>
       <div className="about-grid">
         <div className="about-grid-info">
           <p className="about-grid-info-text text-justify text-base md:text-lg leading-relaxed">
-            {isMobile ? mobileText.intro : desktopText.intro}
+            {t.about.intro}
           </p>
           <p className="about-grid-info-text text-justify text-base md:text-lg leading-relaxed indent-4">
-            {isMobile ? mobileText.experience : desktopText.experience}
+            {t.about.experience}
           </p>
 
           <div className="tech-section" ref={techSectionRef}>
@@ -195,7 +179,7 @@ function About() {
             {!imageError ? (
               <Image
                 src="/etc/pp.png"
-                alt="Andres Bonilla - Front End Developer"
+                alt={t.about.imageAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
@@ -206,7 +190,7 @@ function About() {
             ) : (
               <div className="img-fallback">
                 <div className="img-fallback-avatar">A</div>
-                <p>Image unavailable</p>
+                <p>{t.about.imageUnavailable}</p>
               </div>
             )}
           </div>

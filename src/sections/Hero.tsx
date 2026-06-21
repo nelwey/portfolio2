@@ -2,6 +2,7 @@ import { motion, useAnimation, Variants } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import Button from '../components/Button';
 import Image from 'next/image';
+import { useLanguage } from '@/utils/LanguageContext';
 import { useAppContext } from '@/utils/ThemeContext';
 
 // Define variants for animations
@@ -81,6 +82,7 @@ const FloatingKeyword: FC<{ text: string, index: number, scrollY: number }> = ({
 };
 
 const Hero: FC = () => {
+  const { t } = useLanguage();
   const [scrollY, setScrollY] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const controls = useAnimation();
@@ -144,7 +146,7 @@ const Hero: FC = () => {
           initial="hidden"
           animate="visible"
         >
-          Hello, I&apos;m
+          {t.hero.greeting}
         </motion.h1>
         <motion.h2
           className="hero-title-large"
@@ -153,7 +155,7 @@ const Hero: FC = () => {
           initial="hidden"
           animate="visible"
         >
-          Andres Bonilla.
+          {t.hero.name}
         </motion.h2>
         <motion.h3
           className="hero-title-large hero-title-sub"
@@ -161,7 +163,7 @@ const Hero: FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut', delay: 1.0 }}
         >
-          I build <span className="highlight">things for the web</span>
+          {t.hero.taglinePrefix}<span className="highlight">{t.hero.taglineHighlight}</span>
         </motion.h3>
         <motion.p
           className="hero-text"
@@ -169,9 +171,12 @@ const Hero: FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeInOut', delay: 1.4 }}
         >
-          I&apos;m a <span className="highlight">Full-Stack Developer</span> specializing in <span className="highlight">responsive web applications</span> RESTful APIs,
-          My expertise includes <span className="highlight">React</span>, <span className="highlight">Node.js</span>, <span className="highlight">C#</span>, <span className="highlight">modern JavaScript</span>,
-          and performance optimization.
+          {t.hero.descPart1}<span className="highlight">{t.hero.descHighlight1}</span>
+          {t.hero.descPart2}<span className="highlight">{t.hero.descHighlight2}</span>
+          {t.hero.descPart3}<span className="highlight">{t.hero.descHighlight3}</span>
+          {t.hero.descPart4}<span className="highlight">{t.hero.descHighlight4}</span>
+          {t.hero.descPart5}<span className="highlight">{t.hero.descHighlight5}</span>
+          {t.hero.descPart6}
         </motion.p>
         <motion.div
           className="hero-button"
@@ -180,7 +185,7 @@ const Hero: FC = () => {
           transition={{ duration: 0.4, ease: 'easeInOut', delay: 1.4 }}
         >
           <Button
-            text="Connect on LinkedIn"
+            text={t.hero.connectLinkedIn}
             link="https://linkedin.com/in/andresbonilla97"
             aria-label="LinkedIn profile of Andres Bonilla"
             variant="primary"
@@ -188,7 +193,7 @@ const Hero: FC = () => {
             showExternalIcon={true}
           />
           <Button
-            text="View Projects"
+            text={t.hero.viewProjects}
             link="/#work"
             aria-label="View my projects"
             variant="outline"

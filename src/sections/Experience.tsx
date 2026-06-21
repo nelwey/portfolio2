@@ -1,8 +1,10 @@
+import { useLanguage } from '@/utils/LanguageContext';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 
 function Experience() {
+  const { t } = useLanguage();
   const [selected, setSelected] = useState(0);
   const [mounted, setMounted] = useState(false);
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -27,67 +29,17 @@ function Experience() {
     }
   }, [selected, mounted]);
 
-  const experiences = [
-    {
-      name: 'Q\'allta Software',
-      role: 'Full Stack Developer',
-      url: 'https://www.linkedin.com/company/qallta/',
-      start: 'July 2021',
-      end: 'February 2025',
-      color: '#03dac6',
-      icon: 'M',
-      shortDescription: [
-        'Developed full-stack solutions across diverse projects, initially building industrial management systems with C#, then ensuring quality as QA Engineer for the same platform',
-        'Created responsive front-ends for web applications including an Airbnb-like marketplace using Vue.js, Vuetify and Tailwind CSS, delivering intuitive user experiences.',
-        'Built interactive features for a blockchain gaming platform using Next.js, optimizing performance for real-time crypto transactions',
-      ],
-    },
-
-    // {
-    //   name: 'Apollo Tyres R&D',
-    //   role: 'Project Trainee',
-    //   url: 'https://www.apollotyres.com/',
-    //   start: 'February 2024',
-    //   end: 'May 2024',
-    //   color: '#bb86fc',
-    //   icon: 'A',
-    //   shortDescription: [
-    //     'Architected a robust backend using Django and PostgreSQL to handle over 200 concurrent simulations, resulting in a 40% improvement in system performance and data retrieval efficiency.',
-    //     'Designed an interactive Chart.js dashboard for managers to track job assignments, completion rates, and real-time engineer performance across 300+ projects.',
-    //     'Streamlined task management for a system handling over 1,000 tasks daily.',
-    //     'Developed a web application that optimized the simulation workflow for Apollo Tyres, enhancing task allocation efficiency by approximately 30%.',
-    //   ],
-    // },
-    {
-      name: 'Multigym',
-      role: 'Front End Developer',
-      url: 'https://multigym.fit/',
-      start: 'October 2019',
-      end: 'February 2020',
-      color: '#03dac6',
-      icon: 'M',
-      shortDescription: [
-        'Architected and implemented the front-end of the website.',
-        'Performed preventive maintenance of the lab computers.',
-        'Put into practice my knowledge in research and web development areas.',
-      ],
-    },
-    {
-      name: ' Universidad Tecnológica Privada de Santa Cruz',
-      role: 'Beca Instruccion',
-      url: 'https://v3.utepsa.edu/',
-      start: 'February 2018',
-      end: 'February 2019',
-      color: '#03dac6',
-      icon: 'M',
-      shortDescription: [
-        'Helped teachers and students providing technical support in the systems labs.',
-        'Performed preventive maintenance of the lab computers.',
-        'Put into practice my knowledge in research and web development areas.',
-      ],
-    },
-
-  ];
+  const experiences = t.experience.items.map((item, index) => ({
+    ...item,
+    url:
+      index === 0
+        ? 'https://www.linkedin.com/company/qallta/'
+        : index === 1
+          ? 'https://multigym.fit/'
+          : 'https://v3.utepsa.edu/',
+    color: '#03dac6',
+    icon: index === 0 ? 'Q' : index === 1 ? 'M' : 'U',
+  }));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -126,7 +78,7 @@ function Experience() {
       }}
     >
       <div className="title">
-        <h2>Where I&apos;ve Worked</h2>
+        <h2>{t.experience.title}</h2>
       </div>
 
       <div className="experience-content-container">

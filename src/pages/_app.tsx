@@ -1,5 +1,6 @@
 import '@/scss/globals.css';
 import '@/scss/index.scss';
+import { LanguageProvider } from '@/utils/LanguageContext';
 import { AppProvider } from '@/utils/ThemeContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { AppProps } from 'next/app';
@@ -92,20 +93,21 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
         }
       `}</style>
       
-      <AppProvider>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={router.route}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Component {...pageProps} />
-          </motion.div>
-        </AnimatePresence>
-        
-        {!isMobile && mounted && (
+      <LanguageProvider>
+        <AppProvider>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={router.route}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Component {...pageProps} />
+            </motion.div>
+          </AnimatePresence>
+          
+          {!isMobile && mounted && (
           <AnimatedCursor
             innerSize={8}
             outerSize={35}
@@ -137,8 +139,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
               '.md-btn',
             ]}
           />
-        )}
-      </AppProvider>
+          )}
+        </AppProvider>
+      </LanguageProvider>
     </>
   );
 };

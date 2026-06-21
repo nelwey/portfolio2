@@ -3,9 +3,11 @@ import { ExternalLink, Github, Star, Clock, Award, Tag, Sparkles, Zap, GitFork, 
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState, useEffect } from 'react';
+import { useLanguage } from '@/utils/LanguageContext';
 import Button3D from '@/components/Button3D';
 
 function Projects() {
+  const { t } = useLanguage();
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [projectOfTheDay, setProjectOfTheDay] = useState<any>(null);
@@ -26,10 +28,9 @@ function Projects() {
   const projectsData = [
     {
       video: '',
-      projectName: 'TesloShop',
+      projectName: t.projects.items[0].projectName,
       projectLink: 'https://react-teslo-shop.netlify.app/',
-      projectDescription:
-        'Full-stack e-commerce application built with React + TypeScript, developed as part of my React course by Fernando Herrera. TesloShop includes a public shopping interface and an admin dashboard for managing products, authentication, and roles. It uses TanStack Query for data fetching, Zustand for state management, and a NestJS backend with PostgreSQL (Neon) for persistent storage.',
+      projectDescription: t.projects.items[0].projectDescription,
       projectTech: [
         'React',
         'TypeScript',
@@ -205,7 +206,7 @@ function Projects() {
           hidden: { opacity: 0, y: 0 },
         }}
       >
-        <h2>Some Things I&apos;ve Built</h2>
+        <h2>{t.projects.title}</h2>
       </motion.div>
 
 
@@ -274,7 +275,7 @@ function Projects() {
                         transition={{ delay: 0.3, duration: 0.4 }}
                       >
                         <Star size={14} />
-                        <span>Top Project</span>
+                        <span>{t.projects.topProject}</span>
                       </motion.div>
                     )}
                   </div>
@@ -327,13 +328,13 @@ function Projects() {
                     </ul>
                     <div className="project-info-links mt-4">
                       <Button3D
-                        text="View Project"
+                        text={t.projects.viewProject}
                         link={projectLink}
                         color="primary"
                         className="mr-3"
                       />
                       <Button3D
-                        text="GitHub"
+                        text={t.projects.github}
                         link={projectExternalLinks.github}
                         color="secondary"
                         icon={<Github size={16} />}

@@ -1,21 +1,21 @@
+import { useLanguage } from '@/utils/LanguageContext';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Button from '../components/Button';
+import LanguageToggle from '../components/LanguageToggle';
 import Logo from '../components/Logo';
 
 function Navbar() {
+  const { t } = useLanguage();
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [responsiveNavVisible, setResponsiveNavVisible] = useState(false);
   const sectionLinks = [
-    { name: 'About', link: '/#about' },
-    { name: 'Experience', link: '/#experience' },
-    { name: 'Work', link: '/#work' },
-    {
-      name: 'Contact',
-      link: '/#contact',
-    },
+    { name: t.nav.about, link: '/#about' },
+    { name: t.nav.experience, link: '/#experience' },
+    { name: t.nav.work, link: '/#work' },
+    { name: t.nav.contact, link: '/#contact' },
   ];
 
   useEffect(() => {
@@ -137,23 +137,35 @@ function Navbar() {
             ))}
           </ul>
           <motion.div
-            className="nav-items-button"
+            className="nav-items-actions"
             initial={{ opacity: 0, y: -25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.3,
               ease: 'easeInOut',
-              delay: 0.6,
+              delay: 0.5,
             }}
           >
-            <Button
-              text="Resume"
-              link="https://drive.google.com/file/d/16z3b60XrAoP4aVRehl_W7W436gmej_P1/view?usp=sharing"
-              variant="outline"
-              size="sm"
-              showExternalIcon={true}
-              className="resume-btn"
-            />
+            <LanguageToggle />
+            <motion.div
+              className="nav-items-button"
+              initial={{ opacity: 0, y: -25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.3,
+                ease: 'easeInOut',
+                delay: 0.6,
+              }}
+            >
+              <Button
+                text={t.nav.resume}
+                link="https://drive.google.com/file/d/16z3b60XrAoP4aVRehl_W7W436gmej_P1/view?usp=sharing"
+                variant="outline"
+                size="sm"
+                showExternalIcon={true}
+                className="resume-btn"
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
