@@ -79,26 +79,22 @@ nav {
           }
         }
       }
-      &-button {
-        display: flex;
-        align-items: center;
-        margin-left: 15px;
-        
-        @media screen and (max-width: 1020px) {
-          margin-left: 0;
-          margin-top: 30px;
-        }
-      }
-
       &-actions {
         display: flex;
         align-items: center;
         gap: 1rem;
+        margin-left: 15px;
 
         @media screen and (max-width: 1020px) {
           flex-direction: column;
           gap: 1.5rem;
+          margin-left: 0;
+          margin-top: 30px;
         }
+      }
+      &-button {
+        display: flex;
+        align-items: center;
       }
     }
 
@@ -118,6 +114,7 @@ nav {
         padding: 0.25rem 0.35rem;
         transition: color 0.3s ease-in-out;
         font: inherit;
+        user-select: none;
 
         &:hover {
           color: var(--theme-color);
@@ -125,6 +122,11 @@ nav {
 
         &--active {
           color: var(--theme-color);
+        }
+
+        &:focus-visible {
+          outline: 2px dashed var(--theme-color);
+          outline-offset: 2px;
         }
       }
 
@@ -159,9 +161,6 @@ nav {
         z-index: 11;
         &-list {
           flex-direction: column;
-        }
-        &-button {
-          margin-top: 30px;
         }
       }
 

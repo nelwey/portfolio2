@@ -82,7 +82,7 @@ const FloatingKeyword: FC<{ text: string, index: number, scrollY: number }> = ({
 };
 
 const Hero: FC = () => {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const [scrollY, setScrollY] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const controls = useAnimation();
@@ -140,6 +140,7 @@ const Hero: FC = () => {
           }}></div>
         </div>
         <motion.h1
+          key={`hero-greeting-${locale}`}
           id="hero-heading"
           className="hero-title"
           variants={titleVariants}
@@ -195,7 +196,7 @@ const Hero: FC = () => {
           <Button
             text={t.hero.viewProjects}
             link="/#work"
-            aria-label="View my projects"
+            aria-label={locale === 'ru' ? 'Смотреть мои проекты' : 'View my projects'}
             variant="outline"
             size="lg"
             className="ml-4"

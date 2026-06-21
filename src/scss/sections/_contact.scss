@@ -14,6 +14,8 @@
     font-size: var(--tbase);
     font-family: var(--fira-code);
     font-weight: 300;
+    align-self: stretch;
+    text-align: center;
     &::before {
       counter-increment: title;
       content: '0' counter(title) '.';
@@ -26,6 +28,9 @@
     font-size: var(--tgiant);
     font-family: var(--raleway);
     color: var(--light-slate);
+    align-self: stretch;
+    text-align: center;
+    line-height: 1.15;
   }
 
   .contact-text {

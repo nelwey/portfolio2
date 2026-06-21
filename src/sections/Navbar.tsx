@@ -12,10 +12,10 @@ function Navbar() {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [responsiveNavVisible, setResponsiveNavVisible] = useState(false);
   const sectionLinks = [
-    { name: t.nav.about, link: '/#about' },
-    { name: t.nav.experience, link: '/#experience' },
-    { name: t.nav.work, link: '/#work' },
-    { name: t.nav.contact, link: '/#contact' },
+    { id: 'about', name: t.nav.about, link: '/#about' },
+    { id: 'experience', name: t.nav.experience, link: '/#experience' },
+    { id: 'work', name: t.nav.work, link: '/#work' },
+    { id: 'contact', name: t.nav.contact, link: '/#contact' },
   ];
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Navbar() {
       window.pageYOffset > 100 ? setNavbarVisible(true) : setNavbarVisible(false);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll); // Cleanup listener
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -37,6 +37,10 @@ function Navbar() {
     });
     const html = document.querySelector('html');
     html?.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('.language-toggle')) {
+        return;
+      }
       setResponsiveNavVisible(false);
     });
   }, []);
@@ -66,6 +70,7 @@ function Navbar() {
             <Logo />
           </Link>
         </motion.div>
+
         <motion.div
           className="nav-responsive-toggle"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -101,22 +106,15 @@ function Navbar() {
             />
           )}
         </motion.div>
-        <motion.div
+
+        <div
           id="nav-menu"
-          className={`${responsiveNavVisible && 'nav-responsive'} nav-items`}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 100 }}
-          transition={{
-            duration: 0.3,
-            ease: 'easeInOut',
-          }}
-          aria-hidden={!responsiveNavVisible}
+          className={`${responsiveNavVisible ? 'nav-responsive' : ''} nav-items`}
         >
           <ul className="nav-items-list">
-            {sectionLinks.map(({ name, link }, index) => (
+            {sectionLinks.map(({ id, name, link }, index) => (
               <motion.li
-                key={name}
+                key={id}
                 className="nav-items-list-item"
                 initial={{ opacity: 0, y: -25 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -136,27 +134,10 @@ function Navbar() {
               </motion.li>
             ))}
           </ul>
-          <motion.div
-            className="nav-items-actions"
-            initial={{ opacity: 0, y: -25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.3,
-              ease: 'easeInOut',
-              delay: 0.5,
-            }}
-          >
+
+          <div className="nav-items-actions">
             <LanguageToggle />
-            <motion.div
-              className="nav-items-button"
-              initial={{ opacity: 0, y: -25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.3,
-                ease: 'easeInOut',
-                delay: 0.6,
-              }}
-            >
+            <div className="nav-items-button">
               <Button
                 text={t.nav.resume}
                 link="https://drive.google.com/file/d/16z3b60XrAoP4aVRehl_W7W436gmej_P1/view?usp=sharing"
@@ -165,9 +146,9 @@ function Navbar() {
                 showExternalIcon={true}
                 className="resume-btn"
               />
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );

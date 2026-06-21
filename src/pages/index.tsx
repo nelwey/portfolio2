@@ -132,8 +132,8 @@ function Index() {
   return (
     <div className="app">
       <Head>
-        <title>{t.meta.title}</title>
-        <meta name="description" content={t.meta.description} />
+        <title key={t.meta.title}>{t.meta.title}</title>
+        <meta key={t.meta.description} name="description" content={t.meta.description} />
         <link rel="canonical" href="" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
@@ -158,7 +158,7 @@ function Index() {
             <SocialIcons />
             <Email />
           </Suspense>
-        <main className="fade-in">
+        <main className="fade-in show">
             <Hero />
             <Suspense fallback={<div className="section-loader">Loading about section...</div>}>
               <About />

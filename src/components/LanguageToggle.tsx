@@ -1,34 +1,51 @@
-import { useLanguage } from '@/utils/LanguageContext';
+import { useLanguage } from '@/utils/ThemeContext';
 import { Locale } from '@/utils/translations';
+import { MouseEvent } from 'react';
 
 function LanguageToggle() {
   const { locale, setLocale } = useLanguage();
 
-  const handleSelect = (nextLocale: Locale) => {
+  const handleSelect = (event: MouseEvent, nextLocale: Locale) => {
+    event.preventDefault();
+    event.stopPropagation();
     setLocale(nextLocale);
   };
 
   return (
     <div className="language-toggle" role="group" aria-label="Language selector">
-      <button
-        type="button"
+      <span
+        role="button"
+        tabIndex={0}
         className={`language-toggle-btn ${locale === 'en' ? 'language-toggle-btn--active' : ''}`}
-        onClick={() => handleSelect('en')}
+        onMouseDown={(event) => handleSelect(event, 'en')}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            setLocale('en');
+          }
+        }}
         aria-pressed={locale === 'en'}
       >
         EN
-      </button>
+      </span>
       <span className="language-toggle-divider" aria-hidden="true">
         /
       </span>
-      <button
-        type="button"
+      <span
+        role="button"
+        tabIndex={0}
         className={`language-toggle-btn ${locale === 'ru' ? 'language-toggle-btn--active' : ''}`}
-        onClick={() => handleSelect('ru')}
+        onMouseDown={(event) => handleSelect(event, 'ru')}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            setLocale('ru');
+          }
+        }}
         aria-pressed={locale === 'ru'}
       >
         RU
-      </button>
+      </span>
     </div>
   );
 }
