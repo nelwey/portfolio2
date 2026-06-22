@@ -140,7 +140,7 @@ function Navbar() {
             <div className="nav-items-button">
               <Button
                 text={t.nav.resume}
-                link="https://drive.google.com/file/d/16z3b60XrAoP4aVRehl_W7W436gmej_P1/view?usp=sharing"
+                link="https://drive.google.com/file/d/1E-GzioXoBDg1vXX8D9p0E08BsRXPvat5/view?usp=sharing"
                 variant="outline"
                 size="sm"
                 showExternalIcon={true}
