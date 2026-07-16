@@ -2,6 +2,7 @@ export type Locale = 'en' | 'ru';
 
 export interface ExperienceItem {
   name: string;
+  shortName?: string;
   role: string;
   start: string;
   end: string;
@@ -148,6 +149,7 @@ export const translations: Record<Locale, Translations> = {
         },
         {
           name: 'Universidad Tecnológica Privada de Santa Cruz',
+          shortName: 'UTEPSA',
           role: 'Teaching Assistant',
           start: 'February 2018',
           end: 'February 2019',
@@ -256,6 +258,7 @@ export const translations: Record<Locale, Translations> = {
         },
         {
           name: 'Universidad Tecnológica Privada de Santa Cruz',
+          shortName: 'UTEPSA',
           role: 'Ассистент преподавателя',
           start: 'Февраль 2018',
           end: 'Февраль 2019',

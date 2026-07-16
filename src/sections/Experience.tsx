@@ -19,7 +19,7 @@ function Experience() {
     // Scroll timeline to selected item on mobile
     if (timelineRef.current && window.innerWidth <= 768) {
       const container = timelineRef.current;
-      const selectedItem = container.querySelector(`.timeline-item-${selected}`);
+      const selectedItem = container.querySelector('.experience-tab-selected');
       if (selectedItem) {
         container.scrollTo({
           left: (selectedItem as HTMLElement).offsetLeft - 20,
@@ -91,7 +91,12 @@ function Experience() {
               onClick={() => setSelected(index)}
               style={{ borderColor: index === selected ? experience.color : 'transparent' }}
             >
-              {experience.name}
+              <span className="experience-tab-label experience-tab-label--full">
+                {experience.name}
+              </span>
+              <span className="experience-tab-label experience-tab-label--short">
+                {experience.shortName || experience.name}
+              </span>
             </button>
           ))}
         </div>
@@ -115,18 +120,16 @@ function Experience() {
               <div className="experience-title-badge" style={{ backgroundColor: experiences[selected].color }}>
                 {experiences[selected].icon}
               </div>
-              <div>
-                <h3 className="experience-title">
-                  {experiences[selected].role}
-                  <span className="experience-company">
-                    &nbsp;@&nbsp;
-                    <Link href={experiences[selected].url} legacyBehavior>
-                      <a target="_blank" rel="noopener noreferrer" className="link">
-                        {experiences[selected].name}
-                      </a>
-                    </Link>
-                  </span>
-                </h3>
+              <div className="experience-title-text">
+                <h3 className="experience-title">{experiences[selected].role}</h3>
+                <p className="experience-company-line">
+                  <span className="experience-company-at">@</span>
+                  <Link href={experiences[selected].url} legacyBehavior>
+                    <a target="_blank" rel="noopener noreferrer" className="link">
+                      {experiences[selected].name}
+                    </a>
+                  </Link>
+                </p>
                 <p className="experience-date">
                   {experiences[selected].start} - {experiences[selected].end}
                 </p>
