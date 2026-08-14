@@ -7,8 +7,13 @@ import Button from '../components/Button';
 import LanguageToggle from '../components/LanguageToggle';
 import Logo from '../components/Logo';
 
+const RESUME_LINKS = {
+  en: 'https://drive.google.com/file/d/1E-GzioXoBDg1vXX8D9p0E08BsRXPvat5/view?usp=sharing',
+  ru: 'https://drive.google.com/file/d/1ZBbjlAy3cCPaIdsA1fQ5bkQSEroWKOBH/view?usp=sharing',
+} as const;
+
 function Navbar() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [responsiveNavVisible, setResponsiveNavVisible] = useState(false);
   const sectionLinks = [
@@ -140,7 +145,7 @@ function Navbar() {
             <div className="nav-items-button">
               <Button
                 text={t.nav.resume}
-                link="https://drive.google.com/file/d/16z3b60XrAoP4aVRehl_W7W436gmej_P1/view?usp=sharing"
+                link={RESUME_LINKS[locale]}
                 variant="outline"
                 size="sm"
                 showExternalIcon={true}
