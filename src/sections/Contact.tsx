@@ -4,6 +4,13 @@ import { motion } from 'framer-motion';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import Button from '../components/Button';
 
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+// Only reaches this inbox if the EmailJS template's "To Email" field is {{to_email}}.
+const CONTACT_EMAIL = 'nelwey@mail.ru';
+
 const Contact = () => {
   const { t } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
@@ -19,9 +26,8 @@ const Contact = () => {
   });
 
   useEffect(() => {
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    if (publicKey) {
-      emailjs.init(publicKey);
+    if (EMAILJS_PUBLIC_KEY) {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
     }
   }, []);
 
@@ -51,18 +57,29 @@ const Contact = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error(
+        'EmailJS is not configured. Add NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID and NEXT_PUBLIC_EMAILJS_PUBLIC_KEY to .env.local and restart the dev server.',
+      );
+      setStatus({ submitting: false, submitted: false, error: t.contact.error });
+      return;
+    }
+
     setStatus({ submitting: true, submitted: false, error: null });
 
     try {
-      const result = await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           reply_to: formData.email,
           message: formData.message,
           to_name: 'Andres Bonilla',
+          to_email: CONTACT_EMAIL,
         },
+        { publicKey: EMAILJS_PUBLIC_KEY },
       );
 
       setStatus({ submitting: false, submitted: true, error: null });

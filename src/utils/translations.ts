@@ -14,6 +14,16 @@ export interface ProjectItem {
   projectDescription: string;
 }
 
+export interface LoreFavorite {
+  label: string;
+  lines: string[];
+}
+
+export interface LoreFaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface Translations {
   meta: {
     title: string;
@@ -78,6 +88,50 @@ export interface Translations {
   common: {
     scrollToTop: string;
     loading: string;
+  };
+  lore: {
+    meta: {
+      title: string;
+      description: string;
+    };
+    intro: {
+      warning: string;
+      question: string;
+      skipLabel: string;
+    };
+    title: string;
+    lede: string;
+    paragraphs: string[];
+    favorites: {
+      title: string;
+      items: LoreFavorite[];
+    };
+    facts: {
+      title: string;
+      items: string[];
+    };
+    happy: {
+      title: string;
+      items: string[];
+    };
+    annoyances: {
+      title: string;
+      lines: string[];
+    };
+    uselessSkills: {
+      title: string;
+      lines: string[];
+    };
+    lifeGoal: {
+      title: string;
+      lines: string[];
+    };
+    faq: {
+      title: string;
+      items: LoreFaqItem[];
+    };
+    outro: string;
+    backHome: string;
   };
 }
 
@@ -190,6 +244,118 @@ export const translations: Record<Locale, Translations> = {
       scrollToTop: 'Scroll to top',
       loading: 'Loading...',
     },
+    lore: {
+      meta: {
+        title: 'nelwey lore',
+        description: 'Because explaining myself every single time is exhausting.',
+      },
+      intro: {
+        warning: "You've been warned.",
+        question: 'who tf is nelwey?',
+        skipLabel: 'Skip intro',
+      },
+      title: 'Because explaining myself every single time is exhausting.',
+      lede: "So... here's the shortcut.",
+      paragraphs: [
+        "I'm Andrés. I call myself Nelwey online. Nobody actually calls me that. It's just a tag/username I came up with when I was a kid for games. It stuck, and now I use it pretty much everywhere online whenever I need a username.",
+        "I'm from Santa Cruz, Bolivia, currently living in Saint Petersburg, Russia.",
+        "I run a lot. I code. I play drums. I like making and editing videos and creating content. I'm also pretty creative and always have some random idea or project going on. I drink questionable amounts of coffee and spend way too much time listening to music.",
+        "If you invite me to a party while I'm in the middle of a long run... good luck.",
+      ],
+      favorites: {
+        title: 'Favorite stuff',
+        items: [
+          {
+            label: 'Movies:',
+            lines: ['Lord of the Rings. The whole saga.', 'Yes, the extended editions.'],
+          },
+          { label: 'Show:', lines: ['Rick and Morty.'] },
+          { label: 'Book:', lines: ['Snow Crash.'] },
+          { label: 'Band:', lines: ['Nirvana.'] },
+          {
+            label: 'Music:',
+            lines: [
+              "I'll listen to almost anything, but metal and rock will always have a special place in my heart.",
+            ],
+          },
+          {
+            label: 'Food:',
+            lines: ['Milanesa. Every kind.', 'Napolitana is the undisputed champion.'],
+          },
+          {
+            label: 'Dessert:',
+            lines: ['Ice cream. Dulce de leche. Oreo.', 'Honestly... just give me ice cream.'],
+          },
+          { label: 'Drinks:', lines: ['Kvass, lemonade and coffee.'] },
+        ],
+      },
+      facts: {
+        title: 'Random facts',
+        items: [
+          'I speak Spanish, English and Russian.',
+          'Current side quests: German, Japanese and maybe Italian.',
+          'Winter > Summer.',
+          'Black and light blue are elite.',
+          "I don't want pets. They're awesome. I just don't have time.",
+          'I love survival, co-op, RPG and story-driven games.',
+        ],
+      },
+      happy: {
+        title: 'Things that instantly make me happy',
+        items: [
+          'Coffee.',
+          'Ice cream.',
+          'Finishing a run.',
+          'Playing drums.',
+          'The LOTR soundtrack.',
+          'Discovering a new place.',
+          'Shipping code that somehow works on the first try (rare achievement).',
+        ],
+      },
+      annoyances: {
+        title: 'Things that annoy me',
+        lines: [
+          'Messy places.',
+          'Disorganized people.',
+          'Chaos for no reason.',
+          "People who say they'll watch LOTR and then choose the theatrical version.",
+        ],
+      },
+      uselessSkills: {
+        title: 'Completely useless skills',
+        lines: [
+          'I can imitate crickets.',
+          'I can imitate baby chicks.',
+          "No, I don't know why either.",
+        ],
+      },
+      lifeGoal: {
+        title: 'Life goal?',
+        lines: [
+          'Just live.',
+          'Travel everywhere I can.',
+          'Build cool stuff.',
+          'Run a lot.',
+          'Meet interesting people.',
+          "Life's too short to postpone everything.",
+        ],
+      },
+      faq: {
+        title: 'FAQ',
+        items: [
+          { question: 'Do you like sports?', answer: 'Just a little. (Huge lie.)' },
+          { question: 'Can we play games?', answer: 'Absolutely.' },
+          { question: 'Coffee?', answer: 'Always.' },
+          {
+            question: 'Can we watch Lord of the Rings?',
+            answer: 'Extended editions or nothing.',
+          },
+        ],
+      },
+      outro:
+        'Now you know enough to skip the awkward "tell me about yourself" conversation.',
+      backHome: 'Back to the portfolio',
+    },
   },
   ru: {
     meta: {
@@ -298,6 +464,118 @@ export const translations: Record<Locale, Translations> = {
     common: {
       scrollToTop: 'Наверх',
       loading: 'Загрузка...',
+    },
+    lore: {
+      meta: {
+        title: 'лор nelwey',
+        description: 'Потому что каждый раз объяснять, кто я, уже утомительно.',
+      },
+      intro: {
+        warning: 'тебя предупреждали',
+        question: 'так кто, блять, такой Nelwey?',
+        skipLabel: 'Пропустить интро',
+      },
+      title: 'Потому что каждый раз объяснять, кто я, уже утомительно.',
+      lede: 'Так что... вот короткая версия.',
+      paragraphs: [
+        'Я Андрес. В интернете я сам называю себя Nelwey. На самом деле меня так никто не называет. Это просто тег/юзернейм, который я придумал ещё в детстве для игр. Он прижился, и теперь я использую его практически везде в интернете, где нужно указать имя пользователя.',
+        'Я из Санта-Крус-де-ла-Сьерра, Боливия, сейчас живу в Санкт-Петербурге, Россия.',
+        'Я много бегаю. Я программирую. Играю на барабанах. Люблю снимать и монтировать видео, создавать контент и вообще придумывать всякие штуки. Я считаю себя довольно творческим человеком. А ещё я пью подозрительно много кофе и провожу слишком много времени, слушая музыку.',
+        'Если вы пригласили меня на вечеринку, пока я посреди длительной пробежки... удачи.',
+      ],
+      favorites: {
+        title: 'Любимые вещи',
+        items: [
+          {
+            label: 'Фильмы:',
+            lines: ['Властелин колец. Вся трилогия.', 'Да, расширенные версии.'],
+          },
+          { label: 'Сериал:', lines: ['Рик и Морти.'] },
+          { label: 'Книга:', lines: ['Лавина (Snow Crash).'] },
+          { label: 'Группа:', lines: ['Nirvana.'] },
+          {
+            label: 'Музыка:',
+            lines: [
+              'Я слушаю почти всё, но металл и рок всегда будут занимать особое место в моём сердце.',
+            ],
+          },
+          {
+            label: 'Еда:',
+            lines: ['Миланеса. Любая.', 'Наполитана — безоговорочный чемпион.'],
+          },
+          {
+            label: 'Десерт:',
+            lines: ['Мороженое. Дульсе-де-лече. Oreo.', 'Честно... просто дайте мне мороженое.'],
+          },
+          { label: 'Напитки:', lines: ['Квас, лимонад и кофе.'] },
+        ],
+      },
+      facts: {
+        title: 'Случайные факты',
+        items: [
+          'Я говорю на испанском, английском и русском.',
+          'Текущие побочные квесты: немецкий, японский и, возможно, итальянский.',
+          'Зима > лето.',
+          'Чёрный и светло-голубой — топ.',
+          'Я не хочу домашних животных. Они классные. Просто у меня нет на них времени.',
+          'Люблю игры на выживание, кооперативы, RPG и сюжетные игры.',
+        ],
+      },
+      happy: {
+        title: 'То, что мгновенно делает меня счастливым',
+        items: [
+          'Кофе.',
+          'Мороженое.',
+          'Закончить пробежку.',
+          'Поиграть на барабанах.',
+          'Саундтрек «Властелина колец».',
+          'Открыть для себя новое место.',
+          'Запустить код и обнаружить, что он каким-то чудом работает с первого раза (редкое достижение).',
+        ],
+      },
+      annoyances: {
+        title: 'То, что меня раздражает',
+        lines: [
+          'Беспорядок.',
+          'Неорганизованные люди.',
+          'Хаос без причины.',
+          'Люди, которые говорят, что будут смотреть «Властелина колец», а потом выбирают театральную версию.',
+        ],
+      },
+      uselessSkills: {
+        title: 'Совершенно бесполезные навыки',
+        lines: [
+          'Я умею изображать сверчков.',
+          'Я умею изображать цыплят.',
+          'Нет, я сам не знаю зачем.',
+        ],
+      },
+      lifeGoal: {
+        title: 'Цель в жизни?',
+        lines: [
+          'Просто жить.',
+          'Путешествовать везде, где только смогу.',
+          'Создавать крутые вещи.',
+          'Много бегать.',
+          'Знакомиться с интересными людьми.',
+          'Жизнь слишком коротка, чтобы всё постоянно откладывать.',
+        ],
+      },
+      faq: {
+        title: 'FAQ',
+        items: [
+          { question: 'Ты любишь спорт?', answer: 'Совсем чуть-чуть. (Огромная ложь.)' },
+          { question: 'Можем поиграть?', answer: 'Конечно.' },
+          { question: 'Кофе?', answer: 'Всегда.' },
+          {
+            question: 'Можем посмотреть «Властелина колец»?',
+            answer: 'Только расширенные версии.',
+          },
+        ],
+      },
+      outro:
+        'Теперь вы знаете достаточно, чтобы больше не устраивать неловкий разговор в стиле «расскажи немного о себе».',
+      backHome: 'Вернуться в портфолио',
     },
   },
 };

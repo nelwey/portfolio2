@@ -71,7 +71,7 @@ function Navbar() {
             ease: 'easeInOut',
           }}
         >
-          <Link href="" aria-label="Homepage">
+          <Link href="/" aria-label="Homepage">
             <Logo />
           </Link>
         </motion.div>
